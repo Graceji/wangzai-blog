@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    "@babel/plugin-proposal-decorators",
+    "@babel/plugin-transform-runtime",
+    "react-hot-loader/babel",
+    "@babel/plugin-syntax-dynamic-import"
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "loose": true
+      }
+    ],
+    "@babel/preset-stage-1",
+    "@babel/preset-react"
+  ]
+}
