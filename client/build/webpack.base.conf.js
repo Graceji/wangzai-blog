@@ -2,6 +2,7 @@
 
 const path = require('path');
 const config = require('../config');
+const utils = require('./utils');
 
 const resolve = dir => path.join(__dirname, '..', dir);
 
@@ -19,7 +20,7 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main'
+    app: './src'
   },
   output: {
     path: config.build.assetsRoot,
@@ -37,6 +38,14 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        }
       },
     ]
   }
