@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-runtime",
+    "react-hot-loader/babel",
+    "@babel/plugin-syntax-dynamic-import",
+    ["import", {
+      "libraryName": "antd",
+      "style": true
+    }]
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "loose": true
+      }
+    ],
+    "@babel/preset-react"
+  ]
+}
