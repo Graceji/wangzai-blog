@@ -2,6 +2,7 @@
 
 const path = require('path');
 const config  = require('../config');
+const packageConfig = require('../package.json');
 
 exports.assetsPath = (_path) => {
   const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -17,7 +18,6 @@ exports.createNotifierCallback = () => {
     if (severity !== 'error') return;
     const error = errors[0];
     console.log('error:', error);
-    console.log('errorfile:', error.file.split('!'));
     const filename = error.file && error.file.split('!').pop();
     notifier.notify({
       title: packageConfig.name,
