@@ -13,8 +13,8 @@ const GlobalStyle = createGlobalStyle`
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
   table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed, 
-  figure, figcaption, footer, header, hgroup, 
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
     margin: 0;
@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure, 
+  article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
@@ -34,6 +34,14 @@ const GlobalStyle = createGlobalStyle`
     background: #f25f70;
     font-size: 15px;
     font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif;
+  }
+  html, body {
+    height: 100%;
+  }
+  #root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
   ol, ul {
     list-style: none;

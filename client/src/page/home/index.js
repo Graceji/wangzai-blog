@@ -9,6 +9,8 @@ import {
 } from './style';
 
 export default class Home extends Component {
+  state = {};
+
   render () {
     return (
       <HomeWrapper>
@@ -27,7 +29,7 @@ export default class Home extends Component {
               </div>
             </ItemLeft>
             {/* <img src="" alt="" /> */}
-            <div className="img" style={{ width: '150px', height: '105px', background: 'lightblue' }}></div>
+            <div className="img" style={{ width: '150px', height: '105px', background: 'lightblue' }} />
           </ListItem>
           <ListItem>2</ListItem>
           <ListItem>3</ListItem>
@@ -35,7 +37,7 @@ export default class Home extends Component {
         </LeftWrapper>
         <RightWrapper>
           <SideBlock title="最近更新" />
-          <SideBlock title="点击排行"/>
+          <SideBlock title="点击排行" />
           <SideBlock title="分类" />
           <SideBlock title="友情链接" />
         </RightWrapper>

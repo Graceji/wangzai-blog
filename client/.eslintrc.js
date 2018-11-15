@@ -29,6 +29,7 @@ module.exports = {
     'space-before-function-paren': ['error', 'always'], // 要求函数圆括号之前有一个空格
     'class-methods-use-this': 'off', // 不强制类方法使用 this
     'prefer-destructuring': [0],
+    'global-require': [0],
     // 使用拖尾逗号
     'comma-dangle': ['error', {
       'arrays': 'always-multiline',
@@ -42,6 +43,7 @@ module.exports = {
     'import/no-named-as-default-member': [0],
     'import/no-mutable-exports': [0],
     'import/prefer-default-export': [0],
+    'import/no-dynamic-require': [0],
     'jsx-a11y/anchor-is-valid': [0],
     'jsx-a11y/no-static-element-interactions': [0],
     'jsx-a11y/click-events-have-key-events': [0],

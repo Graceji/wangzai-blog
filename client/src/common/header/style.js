@@ -85,4 +85,3 @@ export const HeaderNavItem = styled.li`
     padding: 0 20px;
   }
 `;
-
