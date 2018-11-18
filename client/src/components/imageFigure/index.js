@@ -8,7 +8,7 @@ import {
 const ImageFigure = ({ imgUrl, title, refProp, arrange }) => {
   if (arrange) {
     return (
-      <ImgFigure className="imgFigure" ref={refProp} pos={arrange.pos}>
+      <ImgFigure className="imgFigure" ref={refProp} style={arrange}>
         <img src={imgUrl} alt="" />
         <ImgFigcaption>
           <h2 className="img-title">
@@ -29,7 +29,7 @@ ImageFigure.propTypes = {
     PropTypes.number,
     PropTypes.bool,
   ])),
-  refProp: PropTypes.objectOf(PropTypes.element),
+  refProp: PropTypes.objectOf(PropTypes.object),
 };
 
 export default ImageFigure;

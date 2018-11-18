@@ -26,6 +26,7 @@ module.exports = {
     'no-console': [0], // 允许 console
     'no-plusplus': [0], // 允许一元操作符 ++ 和 --
     'no-useless-computed-key': [0], // 这条规则允许使用不必要的计算属性
+    'no-confusing-arrow': [0],
     'space-before-function-paren': ['error', 'always'], // 要求函数圆括号之前有一个空格
     'class-methods-use-this': 'off', // 不强制类方法使用 this
     'prefer-destructuring': [0],

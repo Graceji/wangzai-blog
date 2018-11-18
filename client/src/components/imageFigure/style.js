@@ -8,8 +8,10 @@ export const ImgFigure = styled.figure`
   padding: 15px;
   background: #fff;
   cursor: pointer;
-  left: ${props => props.pos.left}px;
-  top: ${props => props.pos.top}px;
+  left: ${props => props.style.pos.left}px;
+  top: ${props => props.style.pos.top}px;
+  transform: rotate(${props => props.style.rotate}deg);
+  z-index: ${props => props.style.isCenter ? 10 : 0};
   img {
     width: 150px;
     height: 150px;

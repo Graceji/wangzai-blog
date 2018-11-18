@@ -85,6 +85,13 @@ export default class Photo extends Component {
   }
 
   /*
+    * 获取 0~30° 之间的一个任意正负值
+  */
+  get30DegRandom () {
+    return Number(`${Math.random() > 0.5 ? '' : '-'}${Math.ceil(Math.random() * 30)}`);
+  }
+
+  /*
    * 重新布局所有图片
    * @param centerIndex 指定居中排布哪个图片
   */
@@ -112,7 +119,7 @@ export default class Photo extends Component {
         left: this.getRangeRandom(this.vPosRange.x[0], this.vPosRange.x[1]),
         top: this.getRangeRandom(this.vPosRange.topY[0], this.vPosRange.topY[1]),
       },
-      rotate: 0,
+      rotate: this.get30DegRandom(),
       isCenter: false,
     }));
 
@@ -130,7 +137,7 @@ export default class Photo extends Component {
           left: this.getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1]),
           top: this.getRangeRandom(this.hPosRange.y[0], this.hPosRange.y[1]),
         },
-        rotate: 0,
+        rotate: this.get30DegRandom(),
         isCenter: false,
       });
     });
