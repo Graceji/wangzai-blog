@@ -5,20 +5,31 @@ import {
   ImgFigcaption
 } from './style';
 
-const ImageFigure = ({ imgUrl, title }) => (
-  <ImgFigure className="imgFigure">
-    <img src={imgUrl} alt="" />
-    <ImgFigcaption>
-      <h2 className="img-title">
-        { title }
-      </h2>
-    </ImgFigcaption>
-  </ImgFigure>
-);
+const ImageFigure = ({ imgUrl, title, refProp, arrange }) => {
+  if (arrange) {
+    return (
+      <ImgFigure className="imgFigure" ref={refProp} pos={arrange.pos}>
+        <img src={imgUrl} alt="" />
+        <ImgFigcaption>
+          <h2 className="img-title">
+            { title }
+          </h2>
+        </ImgFigcaption>
+      </ImgFigure>
+    );
+  }
+  return null;
+};
 
 ImageFigure.propTypes = {
   imgUrl: PropTypes.string,
   title: PropTypes.string,
+  arrange: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.number,
+    PropTypes.bool,
+  ])),
+  refProp: PropTypes.objectOf(PropTypes.element),
 };
 
 export default ImageFigure;

@@ -38,6 +38,7 @@ module.exports = {
       'exports': 'never',
       'functions': 'ignore'
     }],
+    'object-curly-newline': [0],
     'import/no-unresolved': [0],
     'import/no-named-as-default': [0],
     'import/no-named-as-default-member': [0],
@@ -51,5 +52,6 @@ module.exports = {
     'react/no-array-index-key': [0],
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
     'react/require-default-props': [0],
+    'react/destructuring-assignment': [0]
   },
 }

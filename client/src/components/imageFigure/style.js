@@ -8,6 +8,8 @@ export const ImgFigure = styled.figure`
   padding: 15px;
   background: #fff;
   cursor: pointer;
+  left: ${props => props.pos.left}px;
+  top: ${props => props.pos.top}px;
   img {
     width: 150px;
     height: 150px;

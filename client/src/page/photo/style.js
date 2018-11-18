@@ -18,6 +18,7 @@ export const ImgSection = styled.section`
   height: 100%;
   position: relative;
   background: #ddd;
+  overflow: hidden;
 `;
 /* image -- start */
 
