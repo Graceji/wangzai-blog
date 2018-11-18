@@ -26,6 +26,7 @@ export default class Photo extends Component {
         // }
       ],
     };
+    this.handleFigClick = this.handleFigClick.bind(this);
   }
 
   componentDidMount () {
@@ -84,8 +85,8 @@ export default class Photo extends Component {
     return Math.ceil(Math.random() * (high - low) + low);
   }
 
-  /*
-    * 获取 0~30° 之间的一个任意正负值
+  /**
+  * 获取 0~30° 之间的一个任意正负值
   */
   get30DegRandom () {
     return Number(`${Math.random() > 0.5 ? '' : '-'}${Math.ceil(Math.random() * 30)}`);
@@ -96,60 +97,74 @@ export default class Photo extends Component {
    * @param centerIndex 指定居中排布哪个图片
   */
   rearrange (centerIndex) {
-    let imgsArrangeArr = this.state.imgsArrangeArr;
-    // 居中图片数组
-    const imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex, 1);
+    // this.setState(() => ({
+    //   imgsArrangeArr,
+    // }));
 
-    // 首先居中 centerIndex 的图片, 居中的 centerIndex 的图片不需要旋转
-    imgsArrangeCenterArr[0] = {
-      pos: this.centerPos,
-      rotate: 0,
-      isCenter: true,
-    };
+    this.setState((state) => {
+      // let imgsArrangeArr = state.imgsArrangeArr;
+      // 居中图片数组
+      const imgsArrangeCenterArr = state.imgsArrangeArr.splice(centerIndex, 1);
 
-    const topImgNum = Math.floor(Math.random() * 2); // 上侧图片取一个或者不取
-    const topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum));
+      // 首先居中 centerIndex 的图片, 居中的 centerIndex 的图片不需要旋转
+      imgsArrangeCenterArr[0] = {
+        pos: this.centerPos,
+        rotate: 0,
+        isCenter: true,
+      };
 
-    // 上侧图片数组
-    let imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex, topImgNum);
+      const topImgNum = Math.floor(Math.random() * 2); // 上侧图片取一个或者不取
+      const topImgSpliceIndex = Math.ceil(Math.random() * (state.imgsArrangeArr.length - topImgNum));
 
-    // 布局位于上侧的图片
-    imgsArrangeTopArr = imgsArrangeTopArr.map(() => ({
-      pos: {
-        left: this.getRangeRandom(this.vPosRange.x[0], this.vPosRange.x[1]),
-        top: this.getRangeRandom(this.vPosRange.topY[0], this.vPosRange.topY[1]),
-      },
-      rotate: this.get30DegRandom(),
-      isCenter: false,
-    }));
+      // 上侧图片数组
+      let imgsArrangeTopArr = state.imgsArrangeArr.splice(topImgSpliceIndex, topImgNum);
 
-    // 布局位于左右两侧的图片
-    imgsArrangeArr = imgsArrangeArr.map((...args) => {
-      let hPosRangeLORX;
-      if (args[1] < imgsArrangeArr.length / 2) {
-        hPosRangeLORX = this.hPosRange.leftSecX;
-      } else {
-        hPosRangeLORX = this.hPosRange.rightSecX;
-      }
-
-      return ({
+      // 布局位于上侧的图片
+      imgsArrangeTopArr = imgsArrangeTopArr.map(() => ({
         pos: {
-          left: this.getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1]),
-          top: this.getRangeRandom(this.hPosRange.y[0], this.hPosRange.y[1]),
+          left: this.getRangeRandom(this.vPosRange.x[0], this.vPosRange.x[1]),
+          top: this.getRangeRandom(this.vPosRange.topY[0], this.vPosRange.topY[1]),
         },
         rotate: this.get30DegRandom(),
         isCenter: false,
+      }));
+
+      // 布局位于左右两侧的图片
+      let newImgsArrangeArr = state.imgsArrangeArr.map((...args) => {
+        let hPosRangeLORX;
+        if (args[1] < state.imgsArrangeArr.length / 2) {
+          hPosRangeLORX = this.hPosRange.leftSecX;
+        } else {
+          hPosRangeLORX = this.hPosRange.rightSecX;
+        }
+
+        return ({
+          pos: {
+            left: this.getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1]),
+            top: this.getRangeRandom(this.hPosRange.y[0], this.hPosRange.y[1]),
+          },
+          rotate: this.get30DegRandom(),
+          isCenter: false,
+        });
+      });
+
+      newImgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
+      if (imgsArrangeTopArr.length) {
+        newImgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr[0]);
+      }
+      return ({
+        imgsArrangeArr: newImgsArrangeArr,
       });
     });
+  }
 
-    imgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
-    if (imgsArrangeTopArr.length) {
-      imgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr[0]);
-    }
-
-    this.setState(() => ({
-      imgsArrangeArr,
-    }));
+  /**
+   * 图片点击事件
+   * @param {*} datas
+   */
+  handleFigClick (index) {
+    console.log(index);
+    this.rearrange(index);
   }
 
   // 展示所有图片
@@ -162,8 +177,10 @@ export default class Photo extends Component {
       .map((data, index) => (
         <ImageFigure
           key={data.fileName}
+          index={index}
           refProp={this.imgFig}
           arrange={this.state.imgsArrangeArr[index]}
+          handleClick={this.handleFigClick}
           {...data}
         />
       ));

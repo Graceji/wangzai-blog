@@ -12,6 +12,7 @@ export const ImgFigure = styled.figure`
   top: ${props => props.style.pos.top}px;
   transform: rotate(${props => props.style.rotate}deg);
   z-index: ${props => props.style.isCenter ? 10 : 0};
+  transition: left .6s ease-in-out, top .6s ease-in-out;
   img {
     width: 150px;
     height: 150px;

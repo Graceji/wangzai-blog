@@ -5,10 +5,15 @@ import {
   ImgFigcaption
 } from './style';
 
-const ImageFigure = ({ imgUrl, title, refProp, arrange }) => {
+const ImageFigure = ({ imgUrl, title, refProp, arrange, handleClick, index }) => {
   if (arrange) {
     return (
-      <ImgFigure className="imgFigure" ref={refProp} style={arrange}>
+      <ImgFigure
+        className="imgFigure"
+        ref={refProp}
+        style={arrange}
+        onClick={() => handleClick(index)}
+      >
         <img src={imgUrl} alt="" />
         <ImgFigcaption>
           <h2 className="img-title">
@@ -30,6 +35,8 @@ ImageFigure.propTypes = {
     PropTypes.bool,
   ])),
   refProp: PropTypes.objectOf(PropTypes.object),
+  handleClick: PropTypes.func,
+  index: PropTypes.number,
 };
 
 export default ImageFigure;
