@@ -17,6 +17,10 @@ export const ImgFigure = styled.figure`
     width: 150px;
     height: 150px;
   }
+  &.is-inverse {
+    width: 180px;
+    height: 196px;
+  }
 `;
 
 export const ImgFigcaption = styled.figcaption`

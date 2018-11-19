@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import {
   ImgFigure,
   ImgFigcaption
@@ -9,17 +10,25 @@ const ImageFigure = ({ imgUrl, title, refProp, arrange, handleClick, index }) =>
   if (arrange) {
     return (
       <ImgFigure
-        className="imgFigure"
+        className={classNames('img-figure', { 'is-inverse': arrange.isInverse })}
         ref={refProp}
         style={arrange}
         onClick={() => handleClick(index)}
       >
-        <img src={imgUrl} alt="" />
-        <ImgFigcaption>
-          <h2 className="img-title">
-            { title }
-          </h2>
-        </ImgFigcaption>
+        {
+          !arrange.isInverse
+            ? (
+                <Fragment>
+                  <img src={imgUrl} alt="" />
+                  <ImgFigcaption>
+                    <h2 className="img-title">
+                      { title }
+                    </h2>
+                  </ImgFigcaption>
+                </Fragment>
+              )
+            : <h2>123</h2>
+        }
       </ImgFigure>
     );
   }

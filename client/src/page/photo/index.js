@@ -160,11 +160,26 @@ export default class Photo extends Component {
 
   /**
    * 图片点击事件
-   * @param {*} datas
+   * @param {index} 图片索引
    */
   handleFigClick (index) {
-    console.log(index);
-    this.rearrange(index);
+    if (this.state.imgsArrangeArr[index].isCenter) {
+      // 翻转
+      this.setState((state) => ({
+        imgsArrangeArr: state.imgsArrangeArr.map((item, i) => {
+          if (index === i) {
+            return ({
+              ...item,
+              isInverse: !item.isInverse,
+            });
+          }
+          return item;
+        })
+      }));
+    } else {
+      // 居中
+      this.rearrange(index);
+    }
   }
 
   // 展示所有图片
