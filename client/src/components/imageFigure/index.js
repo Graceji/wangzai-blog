@@ -6,7 +6,7 @@ import {
   ImgFigcaption
 } from './style';
 
-const ImageFigure = ({ imgUrl, title, refProp, arrange, handleClick, index }) => {
+const ImageFigure = ({ imgUrl, title, desc, refProp, arrange, handleClick, index }) => {
   if (arrange) {
     return (
       <ImgFigure
@@ -15,21 +15,35 @@ const ImageFigure = ({ imgUrl, title, refProp, arrange, handleClick, index }) =>
         style={arrange}
         onClick={() => handleClick(index)}
       >
-        {
-          !arrange.isInverse
-            ? (
-                <Fragment>
-                  <img src={imgUrl} alt="" />
-                  <ImgFigcaption>
-                    <h2 className="img-title">
-                      { title }
-                    </h2>
-                  </ImgFigcaption>
-                </Fragment>
-              )
-            : <h2>123</h2>
-        }
+        <img src={imgUrl} alt="" />
+        <ImgFigcaption>
+          <h2 className="img-title">{title}</h2>
+          <div className="img-back" onClick={handleClick}>
+            <p>{desc}</p>
+          </div>
+        </ImgFigcaption>
       </ImgFigure>
+      // <ImgFigure
+      //   className={classNames('img-figure', { 'is-inverse': arrange.isInverse })}
+      //   ref={refProp}
+      //   style={arrange}
+      //   onClick={() => handleClick(index)}
+      // >
+      //   {
+      //     !arrange.isInverse
+      //       ? (
+      //           <Fragment>
+      //             <img src={imgUrl} alt="" />
+      //             <ImgFigcaption>
+      //               <h2 className="img-title">
+      //                 { title }
+      //               </h2>
+      //             </ImgFigcaption>
+      //           </Fragment>
+      //         )
+      //       : <h2 className="img-back">123</h2>
+      //   }
+      // </ImgFigure>
     );
   }
   return null;
@@ -38,6 +52,7 @@ const ImageFigure = ({ imgUrl, title, refProp, arrange, handleClick, index }) =>
 ImageFigure.propTypes = {
   imgUrl: PropTypes.string,
   title: PropTypes.string,
+  desc: PropTypes.string,
   arrange: PropTypes.objectOf(PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.number,

@@ -19,6 +19,7 @@ export const ImgSection = styled.section`
   position: relative;
   background: #ddd;
   overflow: hidden;
+  persitive: 1800px;
 `;
 /* image -- start */
 
